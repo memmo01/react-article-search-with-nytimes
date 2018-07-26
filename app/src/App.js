@@ -54,12 +54,7 @@ class App extends Component {
       
       this.loadToDatabase(this.state.articles[index])
     }
- // section name++
-        //web_url
-        // pub_date++
-        //headline.print_headline++
-        //snippet++
-        //byline.original++
+ 
     loadToDatabase=(savedInfo)=>{
       console.log(savedInfo)
 
