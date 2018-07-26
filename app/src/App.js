@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import Form from './components/form';
 import ButtonList from './components/buttonList';
-import ArticleSection from './components/articlesection'
+import ArticleSection from './components/articlesection';
+import $ from 'jquery'
+import FavoriteList from './components/favoriteList'
 
 
 class App extends Component {
@@ -10,16 +12,17 @@ class App extends Component {
     super()
     this.state=({
       articles:[],
-      search:[]
+      search:[],
+      savedArticles:[]
     })
   }
 
-  componentDidMount(){
-    fetch('/api/try')
-    .then(res=>res.json())
-    .then(hero=> this.setState({heroes:hero}))
+  // componentDidMount(){
+  //   fetch('/api/try')
+  //   .then(res=>res.json())
+  //   .then(hero=> this.setState({heroes:hero}))
     
-  }
+  // }
 
   handleForm=(info)=>{
     this.setState({
@@ -27,7 +30,7 @@ class App extends Component {
     })
     let start = info.start;
     let end = info.end;
-    let topic = info.article
+    let topic = info.article;
     this.queryApi(topic, start, end)
   }
 
@@ -45,6 +48,68 @@ class App extends Component {
      
   }
 
+    handleClick=(articleId)=>{
+
+      let index = (this.state.articles.findIndex(id=>{return id._id == articleId}))
+      
+      this.loadToDatabase(this.state.articles[index])
+    }
+ // section name++
+        //web_url
+        // pub_date++
+        //headline.print_headline++
+        //snippet++
+        //byline.original++
+    loadToDatabase=(savedInfo)=>{
+      console.log(savedInfo)
+
+      let data ={
+        web_url:savedInfo.web_url,
+        pub_date:savedInfo.pub_date,
+        headline:savedInfo.headline.print_headline,
+        snippet:savedInfo.snippet,
+        byline:savedInfo.byline.original
+      }
+    
+      $.ajax({
+        method:"POST",
+        url:'/api/addNewData',
+        data:data
+      }).then(()=>{
+        console.log("sent")
+      })
+    }
+
+
+
+    showFavorites=()=>{
+
+      $.get("/api/favoriteList",(data)=>{
+        console.log(data)
+        this.setState({
+          savedArticles:data
+        })
+      })
+
+    }
+
+    handleRemove=(dataId)=>{
+      let index =this.state.savedArticles.findIndex(article=>{return article.id == dataId})
+     
+      let favId=this.state.savedArticles[index].id
+      let newFavList= this.state.savedArticles.splice(index,1);
+
+      this.setState({
+        saveArticles:newFavList
+      })
+
+
+      $.ajax({
+        method:"DELETE",
+        url:`api/deleteFavorite/${favId}`
+      })
+
+    }
 
 
   render() {
@@ -62,16 +127,21 @@ class App extends Component {
                 <Form searchRequest={this.handleForm.bind(this)}/>
               </div>
               <div className="btnOptionSide">
-                <ButtonList />
+                <ButtonList showFavorites={this.showFavorites.bind(this)}/>
               </div>
             </div>
             
         </header>
-
         <section>
 
-        <ArticleSection articles={this.state.articles}/>
+<FavoriteList savedArticles={this.state.savedArticles} handleRemove={this.handleRemove.bind(this)}/>
+</section>
+        <section>
+
+        <ArticleSection saveArticleData={this.handleClick.bind(this)} articles={this.state.articles}/>
           </section>
+          
+
       </div>
     );
   }

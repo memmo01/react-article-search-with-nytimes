@@ -1,6 +1,12 @@
 import React from 'react'
 
 class OrganizeArticle extends React.Component{
+    handleClick=(e)=>{
+        e.preventDefault();
+        let articleId =e.target.dataset.id
+        this.props.saveArticleData(articleId)
+    }
+
     render(){
         // section name++
         //web_url
@@ -8,7 +14,9 @@ class OrganizeArticle extends React.Component{
         //headline.print_headline++
         //snippet++
         //byline.original++
-        console.log(this.props.organize)
+        console.log(this.props.organize._id)
+        console.log("$$$$$$")
+        console.log(this.props.organize.snippet)
         return(
             <div>
 
@@ -27,7 +35,7 @@ class OrganizeArticle extends React.Component{
    </div>
    </a>
    <div className="saveArticle">
-   <button type="button" className="btn btn-outline-success">save article</button>
+   <button type="button" data-id={this.props.organize._id} onClick={this.handleClick.bind(this)} className="btn btn-outline-success">save article</button>
    </div>
     </div>
  
