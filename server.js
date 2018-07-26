@@ -1,6 +1,6 @@
 const express= require("express");
 const bodyParser=require("body-parser")
-const db = require("./goalsproject/models")
+const db = require("./app/models")
 const app= express()
 
 
@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type:"application/vnd.api+json"}));
 
-require("./goalsproject/routes/api-routes")(app)
+require("./app/routes/api-routes")(app)
 
 
 const Port=5000;

@@ -1,0 +1,19 @@
+header{
+    width:80%;
+    margin-left:10%;
+}
+.searchSide{
+width:60%;
+border-right:1px solid black;
+}
+.btnOptionSide{
+    width:40%;
+    padding:5%;
+}
+.searchOptions{
+    display:inline-flex;
+    width:100%;
+}
+form{
+    text-align: center;
+}
