@@ -1,21 +1,16 @@
 import React from 'react'
+import $ from 'jquery'
 
 class OrganizeArticle extends React.Component{
     handleClick=(e)=>{
         e.preventDefault();
         let articleId =e.target.dataset.id
+        
         this.props.saveArticleData(articleId)
     }
 
     render(){
-        // section name++
-        //web_url
-        // pub_date++
-        //headline.print_headline++
-        //snippet++
-        //byline.original++
         console.log(this.props.organize._id)
-        console.log("$$$$$$")
         console.log(this.props.organize.snippet)
         return(
             <div>

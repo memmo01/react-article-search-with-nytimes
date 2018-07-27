@@ -17,12 +17,9 @@ class App extends Component {
     })
   }
 
-  // componentDidMount(){
-  //   fetch('/api/try')
-  //   .then(res=>res.json())
-  //   .then(hero=> this.setState({heroes:hero}))
-    
-  // }
+//   componentDidMount(){
+// this.showFavorites()
+//   }
 
   handleForm=(info)=>{
     this.setState({
@@ -72,13 +69,17 @@ class App extends Component {
         data:data
       }).then(()=>{
         console.log("sent")
+      }).then(()=>{
+        this.showFavorites()
       })
+
+
     }
 
 
 
     showFavorites=()=>{
-
+      $(".savedArea").css("display","block")
       $.get("/api/favoriteList",(data)=>{
         console.log(data)
         this.setState({
@@ -127,17 +128,25 @@ class App extends Component {
             </div>
             
         </header>
-        <section>
-
-<FavoriteList savedArticles={this.state.savedArticles} handleRemove={this.handleRemove.bind(this)}/>
-</section>
-        <section>
-
+      
+        <section id="listArea">
+        
+        <div className="articleArea">
         <ArticleSection saveArticleData={this.handleClick.bind(this)} articles={this.state.articles}/>
+        </div>
+        <div className="savedArea">
+        <div className="jumbotron saved">
+        <h2>Saved Articles</h2>
+        <FavoriteList savedArticles={this.state.savedArticles} handleRemove={this.handleRemove.bind(this)}/>
+         </div>
+
+         </div>
           </section>
           
 
-      </div>
+</div>
+
+      
     );
   }
 }
