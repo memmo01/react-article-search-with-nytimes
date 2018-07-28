@@ -17,9 +17,7 @@ class App extends Component {
     })
   }
 
-//   componentDidMount(){
-// this.showFavorites()
-//   }
+
 
   handleForm=(info)=>{
     this.setState({
@@ -80,8 +78,8 @@ class App extends Component {
 
     showFavorites=()=>{
       $(".savedArea").css("display","block")
+     
       $.get("/api/favoriteList",(data)=>{
-        console.log(data)
         this.setState({
           savedArticles:data
         })
@@ -112,7 +110,7 @@ class App extends Component {
 
   
     return (
-      <div className="App">
+<div className="App">
       <header>
           <h1 className="display-4"><u>New York Times Article Search</u></h1>
             {/* //this area will contain a title and a form for searching articles */}
@@ -129,19 +127,29 @@ class App extends Component {
             
         </header>
       
-        <section id="listArea">
+      <section id="listArea">
         
         <div className="articleArea">
-        <ArticleSection saveArticleData={this.handleClick.bind(this)} articles={this.state.articles}/>
-        </div>
-        <div className="savedArea">
-        <div className="jumbotron saved">
-        <h2>Saved Articles</h2>
-        <FavoriteList savedArticles={this.state.savedArticles} handleRemove={this.handleRemove.bind(this)}/>
-         </div>
+            <ArticleSection 
+                saveArticleData={this.handleClick.bind(this)}
+                articles={this.state.articles}
+            />
 
-         </div>
-          </section>
+        </div>
+
+        <div className="savedArea">
+         
+          <div className="jumbotron saved">
+            <h2>Saved Articles</h2>
+                <FavoriteList 
+                    savedArticles={this.state.savedArticles} 
+                    handleRemove={this.handleRemove.bind(this)}
+                />
+          </div>
+
+        </div>
+      
+      </section>
           
 
 </div>

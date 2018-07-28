@@ -5,6 +5,7 @@ class ArticleSection extends React.Component{
     handleClick=(articleId)=>{
         this.props.saveArticleData(articleId)
     }
+    
     render(){
         let o;
             if(this.props.articles){
@@ -13,7 +14,7 @@ class ArticleSection extends React.Component{
         return(
             <div>
                  {o}
-                </div>
+            </div>
         )
     }
 }
