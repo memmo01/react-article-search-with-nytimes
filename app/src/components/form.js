@@ -32,7 +32,8 @@ class Form extends React.Component{
             <div>
                 
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                <div className="lead"><label >Search Topic</label></div>
+                
+                    <div className="lead"><label >Search Topic</label></div>
                   
                         <input type="text" required="required" id="searchTopic" ref="searchArticle" placeholder="Article topic"/>
 
@@ -47,9 +48,9 @@ class Form extends React.Component{
                         <div className="button">
                             <button type="submit" className="btn btn-secondary">Search Article</button>
                         
-                        </div>
+                    </div>
                         
-                    </form>
+                </form>
                
             </div>
         )
