@@ -5,6 +5,7 @@ import ButtonList from "./components/buttonList";
 import ArticleSection from "./components/articlesection";
 import $ from "jquery";
 import FavoriteList from "./components/favoriteList";
+import { BroserRouter as Router, Route, Switch } from "react-router-dom";
 
 class App extends Component {
   constructor() {
@@ -14,6 +15,10 @@ class App extends Component {
       search: [],
       savedArticles: []
     };
+  }
+
+  componentDidMount() {
+    this.showFavorites();
   }
 
   handleForm = info => {
@@ -49,14 +54,13 @@ class App extends Component {
   };
 
   loadToDatabase = savedInfo => {
-    console.log(savedInfo);
-
     let data = {
       web_url: savedInfo.web_url,
       pub_date: savedInfo.pub_date,
       headline: savedInfo.headline.print_headline,
       snippet: savedInfo.snippet,
-      byline: savedInfo.byline.original
+      byline: savedInfo.byline.original,
+      news_desk: savedInfo.news_desk
     };
 
     $.ajax({
@@ -134,7 +138,9 @@ class App extends Component {
               <FavoriteList
                 savedArticles={this.state.savedArticles}
                 handleRemove={this.handleRemove.bind(this)}
+                num={5}
               />
+              <a href="/favorites">View All Saved Articles</a>
             </div>
           </div>
         </section>

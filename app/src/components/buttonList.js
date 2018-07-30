@@ -1,20 +1,11 @@
 import React from "react";
+import $ from "jquery";
 
 class ButtonList extends React.Component {
-  handleClick = e => {
-    e.preventDefault();
-    this.props.showFavorites();
-  };
   render() {
     return (
       <div>
-        <button
-          type="button"
-          onClick={this.handleClick.bind(this)}
-          className="btn btn-info"
-        >
-          Saved Articles
-        </button>
+        <a href="/favorites">Saved Articles</a>
 
         <li>view top news today button</li>
         <li>advaced search button</li>
