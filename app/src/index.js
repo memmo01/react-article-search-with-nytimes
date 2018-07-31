@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import App from "./App";
-import Header from "./components/header";
 import FavoritePage from "./pages/favoritePage";
+import Header from "./components/header";
 import registerServiceWorker from "./registerServiceWorker";
 import Topstories from "./pages/topStories";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 ReactDOM.render(
   <Router>
-    <div className="Header">
+    <div>
       <Header />
       <Switch>
         <Route exact path="/" component={App} />

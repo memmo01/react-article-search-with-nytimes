@@ -54,7 +54,6 @@ form input {
 .savedArea {
   width: 30%;
   padding: 1%;
-  display: none;
 }
 .saved #title {
   text-decoration: underline;

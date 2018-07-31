@@ -45,21 +45,28 @@ class App extends Component {
   };
 
   handleClick = articleId => {
-    let index = this.state.articles.findIndex(id => {
+    const { articles } = this.state;
+
+    let index = { articles }.findIndex(id => {
       return parseInt(id._id, 10) === parseInt(articleId, 10);
     });
 
-    this.loadToDatabase(this.state.articles[index]);
+    this.loadToDatabase({ articles }[index]);
   };
 
   loadToDatabase = savedInfo => {
+    //deconstructing object
+    const { web_url, pub_date, snippet, news_desk } = savedInfo;
+    const { print_headline } = savedInfo.headline;
+    const { original } = savedInfo.byline;
+
     let data = {
-      web_url: savedInfo.web_url,
-      pub_date: savedInfo.pub_date,
-      headline: savedInfo.headline.print_headline,
-      snippet: savedInfo.snippet,
-      byline: savedInfo.byline.original,
-      news_desk: savedInfo.news_desk
+      web_url: { web_url },
+      pub_date: { pub_date },
+      headline: { print_headline },
+      snippet: { snippet },
+      byline: { original },
+      news_desk: { news_desk }
     };
 
     $.ajax({
@@ -78,9 +85,8 @@ class App extends Component {
       });
   };
 
+  //displays the list of favorite articles
   showFavorites = () => {
-    $(".savedArea").css("display", "block");
-
     $.get("/api/favoriteList", data => {
       this.setState({
         savedArticles: data
@@ -88,13 +94,16 @@ class App extends Component {
     });
   };
 
+  //deleting data from the favorite list
   handleRemove = dataId => {
-    let index = this.state.savedArticles.findIndex(article => {
+    const { savedArticles } = this.state;
+
+    let index = { savedArticles }.findIndex(article => {
       return parseInt(article.id, 10) === parseInt(dataId, 10);
     });
 
-    let favId = this.state.savedArticles[index].id;
-    let newFavList = this.state.savedArticles.splice(index, 1);
+    let favId = { savedArticles }[index].id;
+    let newFavList = { savedArticles }.splice(index, 1);
 
     this.setState({
       saveArticles: newFavList
