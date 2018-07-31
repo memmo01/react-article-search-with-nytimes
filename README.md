@@ -15,5 +15,5 @@ an application created with React.js using express and mysql for maintaining per
 - React-Router
 - Concurrently
 
-##Author :
+## Author :
 - Michael Emmons
