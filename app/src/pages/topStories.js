@@ -28,7 +28,7 @@ class Topstories extends React.Component {
     });
     return (
       <div className="topStories">
-        <h2 id="tsTitle">Top Stories</h2>
+        <h2 className="display-4">Top Stories</h2>
         {xy}
       </div>
     );

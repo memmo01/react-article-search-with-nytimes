@@ -21,7 +21,7 @@ class FavoritePage extends React.Component {
 
   handleRemove = dataId => {
     let index = this.state.savedArticles.findIndex(article => {
-      return article.id === dataId;
+      return parseInt(article.id, 10) === parseInt(dataId, 10);
     });
 
     let favId = this.state.savedArticles[index].id;
@@ -39,15 +39,14 @@ class FavoritePage extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Saved Articles:</h2>
-        <div className="favPageSavedArticle">
-          <FavoriteList
-            savedArticles={this.state.savedArticles}
-            handleRemove={this.handleRemove.bind(this)}
-            num={this.state.savedArticles.length}
-          />
-        </div>
+      <div className="favPageSavedArticle">
+        <h2 className="display-4">Saved Articles</h2>
+
+        <FavoriteList
+          savedArticles={this.state.savedArticles}
+          handleRemove={this.handleRemove.bind(this)}
+          num={this.state.savedArticles.length}
+        />
       </div>
     );
   }

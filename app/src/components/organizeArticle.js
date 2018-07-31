@@ -20,7 +20,7 @@ class OrganizeArticle extends React.Component {
       <div>
         <div className="card">
           <a href={web_url} target="_blank">
-            <div className="card-header">{news_desk}</div>
+            <div className="card-header bg-info text-white">{news_desk}</div>
             <div className="card-body">
               <blockquote className="blockquote mb-0">
                 <h2>{print_headline}</h2>

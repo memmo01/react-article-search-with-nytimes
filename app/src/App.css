@@ -2,15 +2,18 @@ header {
   width: 80%;
   margin-left: 10%;
 }
+.App {
+  margin-top: 100px;
+}
 .searchSide {
-  width: 60%;
-  border-right: 1px solid black;
+  width: 80%;
+  margin-left: 10%;
 }
 .btn {
   margin-top: 10px;
 }
 form input {
-  width: 70%;
+  width: 100%;
   margin-bottom: 10px;
 }
 .btnOptionSide {
@@ -25,19 +28,21 @@ form input {
 
 .card {
   margin-top: 30px;
-  border: 1px solid rgba(15, 15, 15, 0.6);
 }
-.card-header {
-  background-color: cornflowerblue;
-}
+
 .articleArea {
   width: 60%;
   margin: 0 0 0 5%;
   padding: 1%;
 }
+#savedLink {
+  width: 80%;
+  margin: 40px 0 0 10%;
+  text-align: center;
+}
 .topStories {
   width: 60%;
-  margin: 10px 0 0 20%;
+  margin: 100px 0 0 20%;
 }
 .topStories #tsTitle {
   text-decoration: underline;
@@ -56,7 +61,7 @@ form input {
 }
 .favPageSavedArticle {
   width: 60%;
-  margin: 10px 0 0 20%;
+  margin: 100px 0 0 20%;
 }
 
 a:link {

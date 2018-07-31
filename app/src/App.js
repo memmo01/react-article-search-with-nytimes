@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import Form from "./components/form";
-import ButtonList from "./components/buttonList";
 import ArticleSection from "./components/articlesection";
 import $ from "jquery";
 import FavoriteList from "./components/favoriteList";
@@ -47,7 +46,7 @@ class App extends Component {
 
   handleClick = articleId => {
     let index = this.state.articles.findIndex(id => {
-      return id._id === articleId;
+      return parseInt(id._id, 10) === parseInt(articleId, 10);
     });
 
     this.loadToDatabase(this.state.articles[index]);
@@ -91,7 +90,7 @@ class App extends Component {
 
   handleRemove = dataId => {
     let index = this.state.savedArticles.findIndex(article => {
-      return article.id === dataId;
+      return parseInt(article.id, 10) === parseInt(dataId, 10);
     });
 
     let favId = this.state.savedArticles[index].id;
@@ -111,18 +110,13 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <h1 className="display-4">
-            <u>New York Times Article Search</u>
-          </h1>
+          <h2 className="display-4">Search Articles</h2>
           {/* //this area will contain a title and a form for searching articles */}
           {/* at the top as an icon with counter or as a nav within the header will have an option
             for seeing saved articles. when clicked it will display all saved articles */}
           <div className="jumbotron searchOptions">
             <div className="searchSide">
               <Form searchRequest={this.handleForm.bind(this)} />
-            </div>
-            <div className="btnOptionSide">
-              <ButtonList showFavorites={this.showFavorites.bind(this)} />
             </div>
           </div>
         </header>
@@ -140,13 +134,15 @@ class App extends Component {
 
           <div className="savedArea">
             <div className="jumbotron saved">
-              <h2 id="title">Saved Articles</h2>
+              <h2>Saved Articles</h2>
               <FavoriteList
                 savedArticles={this.state.savedArticles}
                 handleRemove={this.handleRemove.bind(this)}
                 num={5}
               />
-              <a href="/favorites">View All Saved Articles</a>
+              <a href="/favorites">
+                <div id="savedLink">View All Saved Articles</div>
+              </a>
             </div>
           </div>
         </section>

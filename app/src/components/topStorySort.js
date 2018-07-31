@@ -7,7 +7,7 @@ class TopStorySort extends React.Component {
       <div>
         <div className="card">
           <a href={url} target="_blank">
-            <div className="card-header">{section}</div>
+            <div className="card-header bg-info text-white">{section}</div>
             <div className="card-body">
               <blockquote className="blockquote mb-0">
                 <h2>{title}</h2>

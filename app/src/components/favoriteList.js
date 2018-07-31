@@ -3,7 +3,6 @@ import React from "react";
 class FavoriteList extends React.Component {
   handleClick = e => {
     let articleId = e.target.dataset.id;
-
     this.props.handleRemove(articleId);
   };
 
@@ -26,35 +25,35 @@ class FavoriteList extends React.Component {
 
       if (num <= this.props.num) {
         return (
-          <div>
-            <div className="card">
-              <a href={web_url} target="_blank">
-                <div className="card-header">{news_desk}</div>
+          <div className="card">
+            <a href={web_url} target="_blank">
+              <div className="card-header bg-info text-white">{news_desk}</div>
 
-                <div className="card-body">
-                  <blockquote className="blockquote mb-0">
-                    <h2>{headline}</h2>
-                    <p>{snippet}</p>
-                    <footer className="blockquote-footer">
-                      {byline} <cite title="Source Title">{pub_date}</cite>
-                    </footer>
-                  </blockquote>
-                </div>
-              </a>
-
-              <div className="saveArticle">
-                <button
-                  type="button"
-                  data-id={id}
-                  onClick={this.handleClick.bind(this)}
-                  className="btn btn-outline-danger"
-                >
-                  Remove Article
-                </button>
+              <div className="card-body">
+                <blockquote className="blockquote mb-0">
+                  <h2>{headline}</h2>
+                  <p>{snippet}</p>
+                  <footer className="blockquote-footer">
+                    {byline} <cite title="Source Title">{pub_date}</cite>
+                  </footer>
+                </blockquote>
               </div>
+            </a>
+
+            <div className="saveArticle">
+              <button
+                type="button"
+                data-id={id}
+                onClick={this.handleClick.bind(this)}
+                className="btn btn-outline-danger"
+              >
+                Remove Article
+              </button>
             </div>
           </div>
         );
+      } else {
+        return null;
       }
     });
 
