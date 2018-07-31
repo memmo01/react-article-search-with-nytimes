@@ -21,7 +21,7 @@ class FavoritePage extends React.Component {
 
   handleRemove = dataId => {
     let index = this.state.savedArticles.findIndex(article => {
-      return article.id == dataId;
+      return article.id === dataId;
     });
 
     let favId = this.state.savedArticles[index].id;

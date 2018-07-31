@@ -6,6 +6,9 @@ header {
   width: 60%;
   border-right: 1px solid black;
 }
+.btn {
+  margin-top: 10px;
+}
 form input {
   width: 70%;
   margin-bottom: 10px;
@@ -22,10 +25,22 @@ form input {
 
 .card {
   margin-top: 30px;
+  border: 1px solid rgba(15, 15, 15, 0.6);
+}
+.card-header {
+  background-color: cornflowerblue;
 }
 .articleArea {
   width: 60%;
-  margin: 30px 0 0 5%;
+  margin: 0 0 0 5%;
+  padding: 1%;
+}
+.topStories {
+  width: 60%;
+  margin: 10px 0 0 20%;
+}
+.topStories #tsTitle {
+  text-decoration: underline;
 }
 #listArea {
   display: inline-flex;
@@ -33,13 +48,15 @@ form input {
 }
 .savedArea {
   width: 30%;
-  margin: 30px 0 0 2%;
-  padding: 2%;
+  padding: 1%;
   display: none;
 }
+.saved #title {
+  text-decoration: underline;
+}
 .favPageSavedArticle {
-  width: 70%;
-  margin-left: 15%;
+  width: 60%;
+  margin: 10px 0 0 20%;
 }
 
 a:link {

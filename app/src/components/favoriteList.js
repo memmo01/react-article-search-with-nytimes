@@ -1,5 +1,4 @@
 import React from "react";
-import OrganizeArticle from "./organizeArticle";
 
 class FavoriteList extends React.Component {
   handleClick = e => {

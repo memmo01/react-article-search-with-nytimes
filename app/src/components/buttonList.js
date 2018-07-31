@@ -1,14 +1,21 @@
 import React from "react";
-import $ from "jquery";
 
 class ButtonList extends React.Component {
   render() {
     return (
       <div>
-        <a href="/favorites">Saved Articles</a>
-
-        <li>view top news today button</li>
-        <li>advaced search button</li>
+        <a href="/favorites">
+          <button type="button" class="btn btn-info">
+            Saved Articles
+          </button>
+        </a>
+        <br />
+        <a href="/topstories">
+          <button type="button" class="btn btn-secondary">
+            Top Stories
+          </button>
+        </a>
+        {/* <li>advaced search button</li> */}
       </div>
     );
   }

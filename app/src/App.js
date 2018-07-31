@@ -5,7 +5,6 @@ import ButtonList from "./components/buttonList";
 import ArticleSection from "./components/articlesection";
 import $ from "jquery";
 import FavoriteList from "./components/favoriteList";
-import { BroserRouter as Router, Route, Switch } from "react-router-dom";
 
 class App extends Component {
   constructor() {
@@ -42,12 +41,13 @@ class App extends Component {
         this.setState({
           articles: data.response.docs
         });
+        console.log(data);
       });
   };
 
   handleClick = articleId => {
     let index = this.state.articles.findIndex(id => {
-      return id._id == articleId;
+      return id._id === articleId;
     });
 
     this.loadToDatabase(this.state.articles[index]);
@@ -71,6 +71,9 @@ class App extends Component {
       .then(() => {
         console.log("sent");
       })
+      .fail(err => {
+        throw err;
+      })
       .then(() => {
         this.showFavorites();
       });
@@ -88,7 +91,7 @@ class App extends Component {
 
   handleRemove = dataId => {
     let index = this.state.savedArticles.findIndex(article => {
-      return article.id == dataId;
+      return article.id === dataId;
     });
 
     let favId = this.state.savedArticles[index].id;
@@ -126,6 +129,9 @@ class App extends Component {
 
         <section id="listArea">
           <div className="articleArea">
+            <div className="alert alert-secondary" role="alert">
+              <h3>Search Results:</h3>
+            </div>
             <ArticleSection
               saveArticleData={this.handleClick.bind(this)}
               articles={this.state.articles}
@@ -134,7 +140,7 @@ class App extends Component {
 
           <div className="savedArea">
             <div className="jumbotron saved">
-              <h2>Saved Articles</h2>
+              <h2 id="title">Saved Articles</h2>
               <FavoriteList
                 savedArticles={this.state.savedArticles}
                 handleRemove={this.handleRemove.bind(this)}
