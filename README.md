@@ -15,5 +15,18 @@ an application created with React.js using express and mysql for maintaining per
 - React-Router
 - Concurrently
 
+## Screenshots:
+### Landing page/ Article Search :
+![](./screenshots/landingPage.JPG)
+
+### Search Results:
+![](./screenshots/searchResults.JPG)
+
+### Saved Articles Page:
+![](./screenshots/savedArt.JPG)
+
+### Top Stories Page:
+![](./screenshots/topStrories.JPG)
+
 ## Author :
 - Michael Emmons
