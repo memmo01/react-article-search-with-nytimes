@@ -22,14 +22,14 @@ class Topstories extends React.Component {
   }
 
   render() {
-    let xy;
-    xy = this.state.topStories.map(stories => {
+    let individualTopStory;
+    individualTopStory = this.state.topStories.map(stories => {
       return <TopStorySort story={stories} />;
     });
     return (
       <div className="topStories">
         <h2 className="display-4">Top Stories</h2>
-        {xy}
+        {individualTopStory}
       </div>
     );
   }

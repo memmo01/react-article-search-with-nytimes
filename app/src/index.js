@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import App from "./App";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import FavoritePage from "./pages/favoritePage";
 import Header from "./components/header";
 import registerServiceWorker from "./registerServiceWorker";

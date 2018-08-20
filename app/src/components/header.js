@@ -1,5 +1,5 @@
 import React from "react";
-
+// this component is the header displayed on each page providing navigation
 class Header extends React.Component {
   render() {
     return (

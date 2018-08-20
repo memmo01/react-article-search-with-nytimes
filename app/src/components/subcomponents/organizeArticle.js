@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import $ from "jquery";
 
 class OrganizeArticle extends React.Component {
@@ -29,9 +30,8 @@ class OrganizeArticle extends React.Component {
                 <p>{this.props.organize.snippet}</p>
 
                 <footer className="blockquote-footer">
-                  {this.props.organize.byline.original}{" "}
                   <cite title="Source Title">
-                    {this.props.organize.pub_date}
+                    {moment(this.props.organize.pub_date).format("MMM-DD-YYYY")}
                   </cite>
                 </footer>
               </blockquote>

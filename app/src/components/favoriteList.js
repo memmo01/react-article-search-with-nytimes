@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 
 class FavoriteList extends React.Component {
   handleClick = e => {
@@ -7,34 +8,29 @@ class FavoriteList extends React.Component {
   };
 
   render() {
-    let x;
+    let article;
     let num = 0;
 
-    x = this.props.savedArticles.map(articles => {
+    article = this.props.savedArticles.map(articles => {
       num++;
-
-      const {
-        web_url,
-        pub_date,
-        headline,
-        snippet,
-        byline,
-        id,
-        news_desk
-      } = articles;
 
       if (num <= this.props.num) {
         return (
           <div className="card">
             <a href={articles.web_url} target="_blank">
-              <div className="card-header bg-info text-white">{articles.news_desk}</div>
+              <div className="card-header bg-info text-white">
+                {articles.news_desk}
+              </div>
 
               <div className="card-body">
                 <blockquote className="blockquote mb-0">
                   <h2>{articles.headline}</h2>
                   <p>{articles.snippet}</p>
                   <footer className="blockquote-footer">
-                    {articles.byline} <cite title="Source Title">{articles.pub_date}</cite>
+                    {articles.byline}{" "}
+                    <cite title="Source Title">
+                      {moment(articles.pub_date).format("MMM-DD-YYYY")}
+                    </cite>
                   </footer>
                 </blockquote>
               </div>
@@ -57,7 +53,7 @@ class FavoriteList extends React.Component {
       }
     });
 
-    return <div>{x}</div>;
+    return <div>{article}</div>;
   }
 }
 

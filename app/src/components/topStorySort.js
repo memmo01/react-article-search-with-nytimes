@@ -1,8 +1,9 @@
 import React from "react";
 
+// this component packages all top stories individually and send back to topstories page
+
 class TopStorySort extends React.Component {
   render() {
-    // const { section, subsection, title, abstract, url } = this.props.story;
     return (
       <div>
         <div className="card">

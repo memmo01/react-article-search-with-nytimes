@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import Form from "./components/form";
+import Form from "./components/Form";
 import ArticleSection from "./components/articlesection";
 import $ from "jquery";
 import FavoriteList from "./components/favoriteList";
@@ -11,80 +11,15 @@ class App extends Component {
     this.state = {
       articles: [],
       search: [],
-      savedArticles: []
+      savedArticles: [],
+      showNav: false
     };
   }
 
+  // show favorited articles when component mounts
   componentDidMount() {
     this.showFavorites();
   }
-
-  handleForm = info => {
-    this.setState({
-      search: info
-    });
-    let start = info.start;
-    let end = info.end;
-    let topic = info.article;
-    this.queryApi(topic, start, end);
-  };
-
-  queryApi = (topic, start, end) => {
-    let key = "9c50663a3f8a41f0aa37b27c629a17aa";
-
-    fetch(
-      `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${topic}&begin_date=${start}&end_date=${end}&api-key=${key}`
-    )
-      .then(results => results.json())
-      .then(data => {
-        this.setState({
-          articles: data.response.docs
-        });
-        console.log(data);
-      });
-  };
-
-  handleClick = articleId => {
-    console.log(articleId);
-
-    let index = this.state.articles.findIndex(id => {
-      return parseInt(id._id, 10) === parseInt(articleId, 10);
-    });
-
-    this.loadToDatabase(this.state.articles[index]);
-  };
-
-  loadToDatabase = savedInfo => {
-    //deconstructing object
-    const { web_url, pub_date, snippet, news_desk } = savedInfo;
-    const { print_headline } = savedInfo.headline;
-    const { original } = savedInfo.byline;
-
-    let data = {
-      web_url: savedInfo.web_url,
-      pub_date: savedInfo.pub_date,
-      headline: savedInfo.headline.print_headline,
-      snippet: savedInfo.snippet,
-      byline: savedInfo.byline.original,
-      news_desk: savedInfo.news_desk
-    };
-    console.log(data);
-
-    $.ajax({
-      method: "POST",
-      url: "/api/addNewData",
-      data: data
-    })
-      .then(() => {
-        console.log("sent");
-      })
-      .fail(err => {
-        throw err;
-      })
-      .then(() => {
-        this.showFavorites();
-      });
-  };
 
   //displays the list of favorite articles
   showFavorites = () => {
@@ -95,10 +30,79 @@ class App extends Component {
     });
   };
 
+  handleForm = info => {
+    this.setState({
+      search: info,
+      showNav: true
+    });
+    let start = info.start;
+    let end = info.end;
+    let topic = info.article;
+    let page = this.state.page;
+    this.queryApi(topic, start, end, 0);
+  };
+
+  // if page button is press this updates the ny time information to cahnge page forward or backward
+  changePage(page) {
+    let start = this.state.search.start;
+    let end = this.state.search.end;
+    let topic = this.state.search.article;
+    this.queryApi(topic, start, end, page);
+  }
+
+  // takes information given to it an queries the nytime API for specific info
+
+  queryApi = (topic, start, end, page) => {
+    let key = "9c50663a3f8a41f0aa37b27c629a17aa";
+
+    fetch(
+      `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${topic}&begin_date=${start}&end_date=${end}&api-key=${key}&page=${page}`
+    )
+      .then(results => results.json())
+      .then(data => {
+        this.setState({
+          articles: data.response.docs
+        });
+        console.log(data);
+      });
+  };
+
+  handleSave = articleId => {
+    let index = this.state.articles.findIndex(id => {
+      return parseInt(id._id, 10) === parseInt(articleId, 10);
+    });
+
+    this.loadToDatabase(this.state.articles[index]);
+  };
+
+  loadToDatabase = savedInfo => {
+    let data = {
+      web_url: savedInfo.web_url,
+      pub_date: savedInfo.pub_date,
+      headline: savedInfo.headline.print_headline,
+      snippet: savedInfo.snippet,
+      byline: savedInfo.byline.original,
+      news_desk: savedInfo.news_desk
+    };
+
+    $.ajax({
+      method: "POST",
+      url: "/api/addNewData",
+      data: data
+    })
+      .then(() => {
+        console.log("data sent");
+      })
+      .fail(err => {
+        throw err;
+      })
+      .then(() => {
+        this.showFavorites();
+      });
+  };
+
   //deleting data from the favorite list
   handleRemove = dataId => {
-    // const { savedArticles } = this.state;
-
     let index = this.state.savedArticles.findIndex(article => {
       return parseInt(article.id, 10) === parseInt(dataId, 10);
     });
@@ -113,17 +117,18 @@ class App extends Component {
     $.ajax({
       method: "DELETE",
       url: `api/deleteFavorite/${favId}`
+    }).fail(err => {
+      throw err;
     });
   };
 
   render() {
     return (
       <div className="App">
+        {/* Header holds the form input from the form component */}
         <header>
           <h2 className="display-4">Search Articles</h2>
-          {/* //this area will contain a title and a form for searching articles */}
-          {/* at the top as an icon with counter or as a nav within the header will have an option
-            for seeing saved articles. when clicked it will display all saved articles */}
+
           <div className="jumbotron searchOptions">
             <div className="searchSide">
               <Form searchRequest={this.handleForm.bind(this)} />
@@ -137,8 +142,10 @@ class App extends Component {
               <h3>Search Results:</h3>
             </div>
             <ArticleSection
-              saveArticleData={this.handleClick.bind(this)}
+              saveArticleData={this.handleSave.bind(this)}
               articles={this.state.articles}
+              showNav={this.state.showNav}
+              changePage={this.changePage.bind(this)}
             />
           </div>
 
