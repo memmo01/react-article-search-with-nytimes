@@ -75,3 +75,26 @@ a:visited {
   text-align: center;
   padding: 10px;
 }
+/* .saveArticle {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+}
+.blockquote-footer {
+  margin-bottom: 100px;
+}
+.saveArticle button {
+  margin: 10px;
+}
+
+#articleDisplayGroup {
+  flex-wrap: wrap;
+  flex-direction: row;
+  display: inline-flex;
+}
+#individualArticle {
+  width: 20%;
+  display: flex;
+} */

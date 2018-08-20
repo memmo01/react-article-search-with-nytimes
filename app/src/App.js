@@ -45,13 +45,13 @@ class App extends Component {
   };
 
   handleClick = articleId => {
-    const { articles } = this.state;
+    console.log(articleId);
 
-    let index = { articles }.findIndex(id => {
+    let index = this.state.articles.findIndex(id => {
       return parseInt(id._id, 10) === parseInt(articleId, 10);
     });
 
-    this.loadToDatabase({ articles }[index]);
+    this.loadToDatabase(this.state.articles[index]);
   };
 
   loadToDatabase = savedInfo => {
@@ -61,13 +61,14 @@ class App extends Component {
     const { original } = savedInfo.byline;
 
     let data = {
-      web_url: { web_url },
-      pub_date: { pub_date },
-      headline: { print_headline },
-      snippet: { snippet },
-      byline: { original },
-      news_desk: { news_desk }
+      web_url: savedInfo.web_url,
+      pub_date: savedInfo.pub_date,
+      headline: savedInfo.headline.print_headline,
+      snippet: savedInfo.snippet,
+      byline: savedInfo.byline.original,
+      news_desk: savedInfo.news_desk
     };
+    console.log(data);
 
     $.ajax({
       method: "POST",
@@ -96,14 +97,14 @@ class App extends Component {
 
   //deleting data from the favorite list
   handleRemove = dataId => {
-    const { savedArticles } = this.state;
+    // const { savedArticles } = this.state;
 
-    let index = { savedArticles }.findIndex(article => {
+    let index = this.state.savedArticles.findIndex(article => {
       return parseInt(article.id, 10) === parseInt(dataId, 10);
     });
 
-    let favId = { savedArticles }[index].id;
-    let newFavList = { savedArticles }.splice(index, 1);
+    let favId = this.state.savedArticles[index].id;
+    let newFavList = this.state.savedArticles.splice(index, 1);
 
     this.setState({
       saveArticles: newFavList

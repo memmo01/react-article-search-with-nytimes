@@ -26,15 +26,15 @@ class FavoriteList extends React.Component {
       if (num <= this.props.num) {
         return (
           <div className="card">
-            <a href={web_url} target="_blank">
-              <div className="card-header bg-info text-white">{news_desk}</div>
+            <a href={articles.web_url} target="_blank">
+              <div className="card-header bg-info text-white">{articles.news_desk}</div>
 
               <div className="card-body">
                 <blockquote className="blockquote mb-0">
-                  <h2>{headline}</h2>
-                  <p>{snippet}</p>
+                  <h2>{articles.headline}</h2>
+                  <p>{articles.snippet}</p>
                   <footer className="blockquote-footer">
-                    {byline} <cite title="Source Title">{pub_date}</cite>
+                    {articles.byline} <cite title="Source Title">{articles.pub_date}</cite>
                   </footer>
                 </blockquote>
               </div>
@@ -43,7 +43,7 @@ class FavoriteList extends React.Component {
             <div className="saveArticle">
               <button
                 type="button"
-                data-id={id}
+                data-id={articles.id}
                 onClick={this.handleClick.bind(this)}
                 className="btn btn-outline-danger"
               >

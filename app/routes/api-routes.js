@@ -1,25 +1,24 @@
-let Sequelize = require('sequelize');
-let db = require('../models')
+let Sequelize = require("sequelize");
+let db = require("../models");
 
-module.exports=(app)=>{
+module.exports = app => {
+  app.get("/api/favoriteList", (req, res) => {
+    db.articles.findAll({}).then(results => {
+      res.json(results);
+    });
+  });
+  app.post("/api/addNewData", (req, res) => {
+    console.log(req.body.snippet);
+    db.articles.create(req.body).then(results => {
+      res.json(results);
+    });
+  });
 
-    app.get('/api/favoriteList',(req,res)=>{
-        db.articles.findAll({}).then((results)=>{
-            res.json(results)
-        })
-})
-    app.post('/api/addNewData',(req,res)=>{
-        console.log(req.body.snippet)
-        db.articles.create(req.body).then((results)=>{
-            res.json(results)
-        })
-    })
-
-    app.delete("/api/deleteFavorite/:id?",(req,res)=>{
-        db.articles.destroy({
-            where:{
-                id:req.params.id
-            }
-        })
-    })
-}
+  app.delete("/api/deleteFavorite/:id?", (req, res) => {
+    db.articles.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+  });
+};
