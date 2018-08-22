@@ -48,8 +48,6 @@ class FavoriteList extends React.Component {
             </div>
           </div>
         );
-      } else {
-        return null;
       }
     });
 

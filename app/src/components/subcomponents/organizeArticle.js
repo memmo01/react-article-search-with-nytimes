@@ -13,9 +13,7 @@ class OrganizeArticle extends React.Component {
   };
 
   render() {
-    // const { web_url, news_desk, snippet, _id, pub_date } = this.props.organize;
-    // const { print_headline } = this.props.organize.headline;
-    // const { original } = this.props.organize.byline;
+
 
     return (
       <div>

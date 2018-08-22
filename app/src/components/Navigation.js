@@ -1,5 +1,4 @@
 import React from "react";
-import { updateLocale } from "../../../node_modules/moment";
 
 class Navigation extends React.Component {
   constructor() {

@@ -29,9 +29,9 @@ class ArticleSection extends React.Component {
       <div>
         {individualArticle}
 
-        {this.props.showNav ? (
+        {this.props.showNav && (
           <Navigation changePage={this.handleChange.bind(this)} />
-        ) : null}
+        )}
       </div>
     );
   }

@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import "./App.css";
 import Form from "./components/Form";
 import ArticleSection from "./components/articlesection";
-import $ from "jquery";
 import FavoriteList from "./components/favoriteList";
+import $ from "jquery";
+
+import Welcome from "./components/Welcome";
 
 class App extends Component {
   constructor() {
@@ -67,6 +69,7 @@ class App extends Component {
       });
   };
 
+  // SAVES ARTICLES
   handleSave = articleId => {
     let index = this.state.articles.findIndex(id => {
       return parseInt(id._id, 10) === parseInt(articleId, 10);
@@ -125,6 +128,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Welcome />
         {/* Header holds the form input from the form component */}
         <header>
           <h2 className="display-4">Search Articles</h2>
