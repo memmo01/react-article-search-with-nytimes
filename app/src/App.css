@@ -88,13 +88,23 @@ a:visited {
   position: fixed;
   top: 55px;
   background-color: rgba(163, 158, 158, 0.5);
+  display: none;
 }
 .welcome {
   z-index: 9;
-  height: 50%;
   width: 40%;
   margin: 40px 0 0 30%;
-  border: 2px solid black;
+  padding: 40px;
+  border: 2px solid grey;
   position: fixed;
-  background-color: grey;
+  background-color: rgba(245, 244, 232, 1);
+  animation-direction: alternate;
+}
+
+.welcome a {
+  color: black;
+  text-decoration: none;
+}
+.instructionsBtn {
+  text-align: center;
 }
