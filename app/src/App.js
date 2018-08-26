@@ -40,7 +40,7 @@ class App extends Component {
     let start = info.start;
     let end = info.end;
     let topic = info.article;
-    let page = this.state.page;
+    // let page = this.state.page;
     this.queryApi(topic, start, end, 0);
   };
 

@@ -58,7 +58,7 @@ class Welcome extends React.Component {
             <button
               type="button"
               onClick={this.handleClick}
-              class="btn btn-success"
+              className="btn btn-success"
             >
               I Understand
             </button>

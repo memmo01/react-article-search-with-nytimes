@@ -41,6 +41,7 @@ form input {
   margin: 40px 0 0 10%;
   text-align: center;
 }
+
 .topStories {
   width: 60%;
   margin: 100px 0 0 20%;
@@ -107,4 +108,21 @@ a:visited {
 }
 .instructionsBtn {
   text-align: center;
+}
+@media only screen and (max-width: 600px) {
+  header {
+    width: 100%;
+    margin-left: 0;
+  }
+  .searchOptions {
+    width: 80%;
+    margin-left: 10%;
+  }
+  .saved {
+    display: none;
+  }
+  .articleArea {
+    width: 100%;
+    margin: 0 0 0 10%;
+  }
 }

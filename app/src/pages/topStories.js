@@ -23,8 +23,8 @@ class Topstories extends React.Component {
 
   render() {
     let individualTopStory;
-    individualTopStory = this.state.topStories.map(stories => {
-      return <TopStorySort story={stories} />;
+    individualTopStory = this.state.topStories.map((stories, index) => {
+      return <TopStorySort story={stories} key={index} />;
     });
     return (
       <div className="topStories">
